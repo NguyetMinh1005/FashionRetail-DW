@@ -1,0 +1,28 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
+# SQL Server
+*.mdf
+*.ldf
+*.bak
+
+# Dataset gốc
+data/raw/*
+*.csv
+
+# Temporary files
+*.tmp
+*.log
+~$*
+
+# Secrets
+.env
+*.env
+
+# Windows / macOS
+Thumbs.db
+.DS_Store
