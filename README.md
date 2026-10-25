@@ -104,6 +104,14 @@ FashionRetail-DW/
 ├── .gitignore                       # Bỏ qua các file dữ liệu nặng và file rác hệ thống
 └── README.md                        # Tài liệu hướng dẫn dự án
 ```
+Ý nghĩa:
+
+- `raw`: tuyệt đối không sửa.
+- `processed`: dữ liệu đang được xử lý qua từng bước 2.3.
+- `review`: dữ liệu bất thường nhưng **chưa chắc sai**, cần giữ để kiểm tra.
+- `reject`: dữ liệu chắc chắn không đạt rule.
+- `cleaned`: đầu ra cuối cùng để SSIS đọc.
+- `ket_qua_tien_xu_ly`: các bảng thống kê nhỏ để đưa vào báo cáo.
 
 ---
 
