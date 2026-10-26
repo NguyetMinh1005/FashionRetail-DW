@@ -1,0 +1,19 @@
+USE Fashion_Staging;
+GO
+
+-- Kiem tra cau truc cac bang STG
+
+SELECT
+    TABLE_SCHEMA AS SchemaName,
+    TABLE_NAME AS TableName,
+    COLUMN_NAME AS ColumnName,
+    DATA_TYPE AS DataType,
+    CHARACTER_MAXIMUM_LENGTH AS MaxLength,
+    IS_NULLABLE AS IsNullable,
+    ORDINAL_POSITION AS ColumnPosition
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_SCHEMA = 'stg'
+ORDER BY
+    TABLE_NAME,
+    ORDINAL_POSITION;
+GO
