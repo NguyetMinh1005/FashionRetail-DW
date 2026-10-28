@@ -17,20 +17,15 @@ GO
 
 
 /* ============================================================
-   1. KIỂM TRA STG ĐANG RỖNG
+   1. LÀM SẠCH BẢNG STG TRƯỚC KHI NẠP LẠI
    ============================================================ */
+
+TRUNCATE TABLE stg.transactions;
+GO
 
 SELECT COUNT_BIG(*) AS STG_Truoc_Khi_Nap
 FROM stg.transactions;
 GO
-
-/*
-Kết quả phải = 0.
-
-Nếu chưa bằng 0 thì chạy:
-
-TRUNCATE TABLE stg.transactions;
-*/
 
 
 /* ============================================================
@@ -70,15 +65,15 @@ CREATE TABLE dbo.tmp_transactions_import
     Transaction_Type         NVARCHAR(50)  NULL,
     Payment_Method           NVARCHAR(100) NULL,
     Invoice_Total            NVARCHAR(50)  NULL,
+    Country_Code             NVARCHAR(20)  NULL,
+    Expected_Currency        NVARCHAR(20)  NULL,
+    Currency_Match           NVARCHAR(20)  NULL,
     Transaction_Date         NVARCHAR(50)  NULL,
     Transaction_Time         NVARCHAR(50)  NULL,
     Is_Return                NVARCHAR(50)  NULL,
     Net_Amount               NVARCHAR(50)  NULL,
     Sales_Quantity           NVARCHAR(50)  NULL,
     Return_Quantity          NVARCHAR(50)  NULL,
-    Country_Code             NVARCHAR(20)  NULL,
-    Expected_Currency        NVARCHAR(20)  NULL,
-    Currency_Match           NVARCHAR(20)  NULL,
     Exchange_Rate_To_USD     NVARCHAR(50)  NULL,
     Exchange_Rate_Date       NVARCHAR(50)  NULL,
     Exchange_Rate_Source     NVARCHAR(100) NULL,
@@ -199,7 +194,7 @@ Các giá trị trên nên = 0.
    Source_File và Load_Date được thêm tại đây.
    ============================================================ */
 
-INSERT INTO stg.transactions
+INSERT INTO stg.transactions WITH (TABLOCK)
 (
     Invoice_ID,
     Line,

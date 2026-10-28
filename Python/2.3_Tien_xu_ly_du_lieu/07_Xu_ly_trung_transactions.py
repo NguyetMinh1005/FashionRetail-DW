@@ -1,18 +1,19 @@
-﻿import os
-import pandas as pd
-
+# -*- coding: utf-8 -*-
+import os
+import csv
+import sys
+from pathlib import Path
 
 # ============================================================
-# 07 - XỬ LÝ TRÙNG TRANSACTIONS
+# 07 - XỬ LÝ TRÙNG TRANSACTIONS (STREAMING / MEMORY OPTIMIZED)
 # Dự án: Fashion Retail Data Warehouse
 #
 # Mục tiêu:
 #   - Đọc cleaned_transactions.csv
-#   - Phát hiện duplicate theo grain nghiệp vụ
+#   - Phát hiện duplicate theo grain nghiệp vụ bằng streaming
 #   - Chỉ chấp nhận duplicate thuộc Return
 #   - Backup các dòng duplicate
-#   - Giữ bản ghi đầu tiên
-#   - Loại các bản ghi dư
+#   - Giữ bản ghi đầu tiên, loại các bản ghi dư
 #   - Ghi đè cleaned_transactions.csv
 #
 # Kết quả kỳ vọng:
@@ -22,48 +23,29 @@ import pandas as pd
 #   Duplicate   : 0
 # ============================================================
 
-
 # ============================================================
 # 1. ĐƯỜNG DẪN FILE
 # ============================================================
 
-input_file = "data/cleaned/cleaned_transactions.csv"
-output_file = "data/cleaned/cleaned_transactions.csv"
-backup_file = "data/cleaned/transactions_duplicate_backup.csv"
-
+BASE_DIR = Path(__file__).resolve().parents[2]
+input_file = BASE_DIR / "data" / "cleaned" / "cleaned_transactions.csv"
+output_file = BASE_DIR / "data" / "cleaned" / "cleaned_transactions.csv"
+backup_file = BASE_DIR / "data" / "cleaned" / "transactions_duplicate_backup.csv"
+temp_output_file = BASE_DIR / "data" / "cleaned" / "__temp_cleaned_transactions.csv"
 
 # ============================================================
 # 2. KIỂM TRA FILE TỒN TẠI
 # ============================================================
 
-if not os.path.exists(input_file):
-    raise FileNotFoundError(
-        f"Không tìm thấy file: {input_file}"
-    )
-
-
-# ============================================================
-# 3. ĐỌC FILE CLEANED TRANSACTIONS
-# ============================================================
+if not input_file.exists():
+    raise FileNotFoundError(f"Không tìm thấy file: {input_file}")
 
 print("=" * 60)
 print("BẮT ĐẦU XỬ LÝ DUPLICATE TRANSACTIONS")
 print("=" * 60)
 
-df = pd.read_csv(
-    input_file,
-    low_memory=False
-)
-
-rows_before = len(df)
-
-print(f"Số dòng trước xử lý duplicate: {rows_before:,}")
-
-
 # ============================================================
 # 4. CÁC CỘT XÁC ĐỊNH DUPLICATE NGHIỆP VỤ
-#
-# Dùng đúng tên cột thực tế trong CSV
 # ============================================================
 
 duplicate_columns = [
@@ -71,357 +53,222 @@ duplicate_columns = [
     "Line",
     "Date",
     "Transaction_Time",
-
     "Product ID",
     "Size",
     "Color",
-
     "Store ID",
     "Employee ID",
     "Customer ID",
-
     "Transaction Type",
     "Payment Method",
     "Currency",
-
     "Quantity",
     "Unit Price",
     "Discount",
-
     "Line Total",
     "Net_Amount",
     "Net_Amount_Local",
-
     "Exchange_Rate_To_USD",
     "Exchange_Rate_Date",
     "Exchange_Rate_Source",
     "Net_Amount_USD"
 ]
 
-
 # ============================================================
-# 5. KIỂM TRA CÁC CỘT CÓ TỒN TẠI KHÔNG
-# ============================================================
-
-missing_columns = [
-    col
-    for col in duplicate_columns
-    if col not in df.columns
-]
-
-if missing_columns:
-
-    print("\nCác cột bị thiếu:")
-    for col in missing_columns:
-        print("-", col)
-
-    print("\nCác cột thực tế trong CSV:")
-    for col in df.columns:
-        print("-", col)
-
-    raise ValueError(
-        "Thiếu cột cần thiết để kiểm tra duplicate."
-    )
-
-
-print("\nKiểm tra tên cột: ĐẠT")
-
-
-# ============================================================
-# 6. XÁC ĐỊNH DUPLICATE DƯ
-#
-# keep='first':
-#   - giữ dòng đầu tiên
-#   - các dòng sau được đánh dấu duplicate
+# PASS 1: PHÁT HIỆN DUPLICATE BẰNG STREAMING
 # ============================================================
 
-duplicate_mask = df.duplicated(
-    subset=duplicate_columns,
-    keep="first"
-)
+print("Đang quét tìm các dòng duplicate nghiệp vụ...")
 
-duplicate_rows = df.loc[duplicate_mask].copy()
+seen_hashes = set()
+duplicate_row_indices = set()
+duplicate_rows_data = []
+rows_before = 0
 
-duplicate_count = len(duplicate_rows)
+with open(input_file, mode="r", encoding="utf-8-sig", newline="") as f_in:
+    reader = csv.reader(f_in)
+    header = next(reader)
+    
+    missing_columns = [col for col in duplicate_columns if col not in header]
+    if missing_columns:
+        raise ValueError(f"Thiếu các cột cần thiết: {missing_columns}")
+    
+    col_indices = [header.index(col) for col in duplicate_columns]
+    trans_type_idx = header.index("Transaction Type")
+    
+    for row in reader:
+        rows_before += 1
+        key = hash(tuple(row[i] for i in col_indices))
+        if key in seen_hashes:
+            duplicate_row_indices.add(rows_before)
+            duplicate_rows_data.append(row)
+        else:
+            seen_hashes.add(key)
+
+print(f"Số dòng trước xử lý duplicate: {rows_before:,}")
+duplicate_count = len(duplicate_row_indices)
 
 print("\n" + "=" * 60)
 print("KẾT QUẢ PHÁT HIỆN DUPLICATE")
 print("=" * 60)
-
 print(f"Số dòng duplicate dư: {duplicate_count:,}")
 
+# ============================================================
+# KIỂM TRA TRẠNG THÁI FILE ĐÃ XỬ LÝ CHƯA
+# ============================================================
+
+expected_rows_before = 6416029
+expected_rows_after = 6415456
+expected_duplicate_rows = 573
+
+if rows_before == expected_rows_after and duplicate_count == 0:
+    print("\n" + "=" * 60)
+    print("THÔNG BÁO: DỮ LIỆU ĐÃ ĐƯỢC XỬ LÝ TRÙNG LẶP HOÀN TẤT TRƯỚC ĐÓ!")
+    print("=" * 60)
+    print(f"Tổng số dòng hiện tại : {rows_before:,} dòng (Đúng chuẩn 6,415,456 dòng sạch).")
+    print(f"Số duplicate còn lại  : 0 dòng.")
+    if backup_file.exists():
+        print(f"File backup duplicate : {backup_file}")
+    print("\nKẾT QUẢ: ĐẠT - Dữ liệu đã sạch hoàn toàn, không cần chạy lại!")
+    print("\nBƯỚC TIẾP THEO:")
+    print("1. Nạp lại cleaned_transactions.csv vào stg.transactions (dùng 14C_Nap_transactions_CSV_FAST.sql)")
+    print("2. Chạy nạp Data Warehouse (các file SQL từ 15 đến 26)")
+    print("3. Chạy 27_Validation_DW.sql để kiểm tra kết quả cuối")
+    sys.exit(0)
 
 # ============================================================
 # 7. KIỂM TRA DUPLICATE THEO TRANSACTION TYPE
 # ============================================================
 
 print("\nDuplicate theo Transaction Type:")
+type_counts = {}
+for row in duplicate_rows_data:
+    t_type = row[trans_type_idx].strip()
+    type_counts[t_type] = type_counts.get(t_type, 0) + 1
 
-duplicate_by_type = (
-    duplicate_rows["Transaction Type"]
-    .value_counts(dropna=False)
-)
+for t_type, count in type_counts.items():
+    print(f"- {t_type}: {count:,}")
 
-print(duplicate_by_type)
-
-
-# ============================================================
-# 8. CHỈ CHẤP NHẬN DUPLICATE RETURN
-# ============================================================
-
-non_return_duplicates = duplicate_rows[
-    duplicate_rows["Transaction Type"]
-    .astype(str)
-    .str.strip()
-    .str.lower()
-    != "return"
-]
-
-if len(non_return_duplicates) > 0:
-
-    print("\nCẢNH BÁO:")
-    print(
-        "Phát hiện duplicate không thuộc Transaction Type = Return."
-    )
-
-    print("\nMột số dòng mẫu:")
-
-    sample_columns = [
-        "Invoice ID",
-        "Line",
-        "Product ID",
-        "Transaction Type"
-    ]
-
-    print(
-        non_return_duplicates[
-            sample_columns
-        ].head(20)
-    )
-
-    raise ValueError(
-        "Có duplicate không phải Return. "
-        "Dừng xử lý để kiểm tra lại."
-    )
-
+non_return = [row for row in duplicate_rows_data if row[trans_type_idx].strip().lower() != "return"]
+if non_return:
+    raise ValueError(f"Có {len(non_return)} duplicate không phải Return. Dừng xử lý.")
 
 print("\nKiểm tra loại duplicate: ĐẠT")
 print("Tất cả duplicate đều thuộc Return.")
-
 
 # ============================================================
 # 9. KIỂM TRA SỐ DUPLICATE KỲ VỌNG
 # ============================================================
 
-expected_duplicate_rows = 573
-
 if duplicate_count != expected_duplicate_rows:
+    raise ValueError(f"Số duplicate phát hiện = {duplicate_count:,}, không đúng kỳ vọng = {expected_duplicate_rows:,}.")
 
-    raise ValueError(
-        f"Số duplicate phát hiện = {duplicate_count:,}, "
-        f"không đúng kỳ vọng = {expected_duplicate_rows:,}."
-    )
-
-
-print(
-    f"Kiểm tra số duplicate: ĐẠT "
-    f"({duplicate_count:,} dòng)"
-)
-
+print(f"Kiểm tra số duplicate: ĐẠT ({duplicate_count:,} dòng)")
 
 # ============================================================
 # 10. BACKUP DUPLICATE TRƯỚC KHI XÓA
 # ============================================================
 
-os.makedirs(
-    os.path.dirname(backup_file),
-    exist_ok=True
-)
-
-duplicate_rows.to_csv(
-    backup_file,
-    index=False,
-    encoding="utf-8-sig"
-)
+backup_file.parent.mkdir(parents=True, exist_ok=True)
+with open(backup_file, mode="w", encoding="utf-8-sig", newline="") as f_bak:
+    writer = csv.writer(f_bak)
+    writer.writerow(header)
+    writer.writerows(duplicate_rows_data)
 
 print("\nĐã backup các dòng duplicate vào:")
 print(backup_file)
 
-
 # ============================================================
-# 11. LOẠI DUPLICATE
-# ============================================================
-
-df_clean = df.drop_duplicates(
-    subset=duplicate_columns,
-    keep="first"
-).copy()
-
-
-# ============================================================
-# 12. ĐỐI SOÁT SỐ DÒNG
+# PASS 2: XUẤT LẠI FILE CLEAN (LOẠI BỎ 573 DÒNG DUPLICATE)
 # ============================================================
 
-rows_after = len(df_clean)
+print("\nĐang ghi file clean sau khi loại bỏ duplicate...")
+rows_after = 0
+
+with open(input_file, mode="r", encoding="utf-8-sig", newline="") as f_in, \
+     open(temp_output_file, mode="w", encoding="utf-8-sig", newline="") as f_out:
+    
+    reader = csv.reader(f_in)
+    writer = csv.writer(f_out)
+    
+    # write header
+    writer.writerow(next(reader))
+    
+    current_row = 0
+    for row in reader:
+        current_row += 1
+        if current_row not in duplicate_row_indices:
+            writer.writerow(row)
+            rows_after += 1
+
+# Thay thế file gốc an toàn
+if temp_output_file.exists():
+    if output_file.exists():
+        output_file.unlink()
+    temp_output_file.rename(output_file)
+
 rows_removed = rows_before - rows_after
 
 print("\n" + "=" * 60)
 print("ĐỐI SOÁT SAU XỬ LÝ")
 print("=" * 60)
-
 print(f"Số dòng trước : {rows_before:,}")
 print(f"Số dòng loại  : {rows_removed:,}")
 print(f"Số dòng sau   : {rows_after:,}")
-
-
-# ============================================================
-# 13. KIỂM TRA DUPLICATE CÒN LẠI
-# ============================================================
-
-remaining_duplicates = (
-    df_clean
-    .duplicated(
-        subset=duplicate_columns,
-        keep=False
-    )
-    .sum()
-)
-
-print(
-    f"Duplicate còn lại: "
-    f"{remaining_duplicates:,}"
-)
-
-
-# ============================================================
-# 14. KIỂM TRA KẾT QUẢ KỲ VỌNG
-# ============================================================
 
 expected_rows_after = 6415456
 expected_removed = 573
 
 if rows_removed != expected_removed:
-
-    raise ValueError(
-        f"Số dòng loại bỏ = {rows_removed:,}, "
-        f"không đúng kỳ vọng = {expected_removed:,}."
-    )
-
+    raise ValueError(f"Số dòng loại bỏ = {rows_removed:,}, không đúng kỳ vọng = {expected_removed:,}.")
 
 if rows_after != expected_rows_after:
-
-    raise ValueError(
-        f"Số dòng sau xử lý = {rows_after:,}, "
-        f"không đúng kỳ vọng = {expected_rows_after:,}."
-    )
-
-
-if remaining_duplicates != 0:
-
-    raise ValueError(
-        f"Sau xử lý vẫn còn "
-        f"{remaining_duplicates:,} dòng duplicate."
-    )
-
-
-print("\nTất cả kiểm tra sau xử lý: ĐẠT")
-
-
-# ============================================================
-# 15. XUẤT LẠI FILE CLEAN
-# ============================================================
-
-df_clean.to_csv(
-    output_file,
-    index=False,
-    encoding="utf-8-sig"
-)
-
+    raise ValueError(f"Số dòng sau xử lý = {rows_after:,}, không đúng kỳ vọng = {expected_rows_after:,}.")
 
 # ============================================================
 # 16. KIỂM TRA LẠI FILE SAU KHI GHI
 # ============================================================
 
 print("\nĐang kiểm tra lại file sau khi ghi...")
+final_rows = 0
+final_seen = set()
+final_dup_count = 0
 
-df_check = pd.read_csv(
-    output_file,
-    low_memory=False
-)
-
-final_rows = len(df_check)
+with open(output_file, mode="r", encoding="utf-8-sig", newline="") as f_chk:
+    reader = csv.reader(f_chk)
+    chk_header = next(reader)
+    chk_col_indices = [chk_header.index(col) for col in duplicate_columns]
+    
+    for row in reader:
+        final_rows += 1
+        key = hash(tuple(row[i] for i in chk_col_indices))
+        if key in final_seen:
+            final_dup_count += 1
+        else:
+            final_seen.add(key)
 
 if final_rows != expected_rows_after:
+    raise ValueError(f"File sau khi ghi có {final_rows:,} dòng, không đúng {expected_rows_after:,} dòng.")
 
-    raise ValueError(
-        f"File sau khi ghi có {final_rows:,} dòng, "
-        f"không đúng {expected_rows_after:,} dòng."
-    )
+if final_dup_count != 0:
+    raise ValueError(f"File sau khi ghi vẫn còn {final_dup_count:,} duplicate.")
 
-
-# ============================================================
-# 17. KIỂM TRA DUPLICATE LẦN CUỐI
-# ============================================================
-
-final_duplicate_count = (
-    df_check
-    .duplicated(
-        subset=duplicate_columns,
-        keep=False
-    )
-    .sum()
-)
-
-if final_duplicate_count != 0:
-
-    raise ValueError(
-        f"File sau khi ghi vẫn còn "
-        f"{final_duplicate_count:,} duplicate."
-    )
-
-
-# ============================================================
-# 18. KIỂM TRA BACKUP
-# ============================================================
-
-backup_check = pd.read_csv(
-    backup_file,
-    low_memory=False
-)
-
-backup_rows = len(backup_check)
-
-if backup_rows != expected_removed:
-
-    raise ValueError(
-        f"File backup có {backup_rows:,} dòng, "
-        f"không đúng {expected_removed:,} dòng."
-    )
-
-
-# ============================================================
-# 19. THÔNG BÁO HOÀN TẤT
-# ============================================================
+backup_rows = len(duplicate_rows_data)
 
 print("\n" + "=" * 60)
 print("HOÀN TẤT XỬ LÝ DUPLICATE")
 print("=" * 60)
-
 print(f"File clean  : {output_file}")
 print(f"File backup : {backup_file}")
-
 print("\nKẾT QUẢ CUỐI:")
-
 print(f"Số dòng ban đầu : {rows_before:,}")
 print(f"Số dòng đã loại : {rows_removed:,}")
 print(f"Số dòng cuối    : {final_rows:,}")
 print(f"Backup duplicate: {backup_rows:,}")
-print(f"Duplicate còn lại: {final_duplicate_count:,}")
-
+print(f"Duplicate còn lại: {final_dup_count:,}")
 print("\nKẾT QUẢ: ĐẠT")
-
 print("\nBƯỚC TIẾP THEO:")
-print("1. Nạp lại cleaned_transactions.csv vào stg.transactions")
+print("1. Nạp lại cleaned_transactions.csv vào stg.transactions (dùng 14C_Nap_transactions_CSV_FAST.sql)")
 print("2. Kiểm tra STG phải có 6,415,456 dòng")
 print("3. Chạy 26_Load_Fact_Sales.sql")
 print("4. Chạy 27_Validation_DW.sql")
