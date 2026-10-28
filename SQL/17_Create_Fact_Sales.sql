@@ -165,14 +165,15 @@ CREATE TABLE dbo.Fact_Sales
        QUY ĐỔI TIỀN TỆ
        ======================================================== */
 
+    Net_Amount_Local DECIMAL(18,2) NULL,
+    Exchange_Rate_To_USD DECIMAL(18,8) NULL,
+    Exchange_Rate_Date DATE NULL,
+    Exchange_Rate_Source NVARCHAR(100) NULL,
+    Net_Amount_USD DECIMAL(18,4) NULL,
+
     /*
        Doanh thu sau quy đổi sang đồng tiền báo cáo.
-
-       Chỉ có giá trị khi nhóm có nguồn tỷ giá
-       được xác nhận.
-
-       Nếu chưa có tỷ giá đáng tin cậy:
-       để NULL.
+       Chỉ có giá trị khi nhóm có nguồn tỷ giá được xác nhận.
     */
     Net_Amount_Report DECIMAL(18,2) NULL,
 

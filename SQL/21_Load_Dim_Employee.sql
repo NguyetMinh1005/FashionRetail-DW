@@ -2,23 +2,20 @@ USE Fashion_DW;
 GO
 
 /* ============================================================
-   22 - LOAD DIM DATE
+   21 - LOAD DIM EMPLOYEE
    Dự án: Fashion Retail Data Warehouse
 
    Nguồn:
-       Fashion_Staging.stg.transactions
+       Fashion_Staging.stg.employees
 
    Đích:
-       Fashion_DW.dbo.Dim_Date
+       Fashion_DW.dbo.Dim_Employee
 
    Business Key:
-       Full_Date
+       Employee_ID
 
-   Surrogate/Date Key:
-       Date_Key dạng YYYYMMDD
-
-   Phạm vi dữ liệu dự kiến:
-       2023-01-01 -> 2025-03-18
+   Surrogate Key:
+       Employee_Key
    ============================================================ */
 
 
@@ -28,149 +25,74 @@ GO
 
 IF EXISTS (SELECT 1 FROM dbo.Fact_Sales)
 BEGIN
-    THROW 50005,
-          N'Fact_Sales đã có dữ liệu. Không được reload Dim_Date trước khi xử lý Fact.',
+    THROW 50004,
+          N'Fact_Sales đã có dữ liệu. Không được reload Dim_Employee trước khi xử lý Fact.',
           1;
 END;
 GO
 
 
 /* ============================================================
-   2. XÓA DỮ LIỆU DIM DATE CŨ
+   2. XÓA DỮ LIỆU DIM EMPLOYEE CŨ
    ============================================================ */
 
 /*
-   Không dùng TRUNCATE vì Dim_Date đang được Fact_Sales
+   Không dùng TRUNCATE vì Dim_Employee đang được Fact_Sales
    tham chiếu bằng FOREIGN KEY.
 */
 
-DELETE FROM dbo.Dim_Date;
+DELETE FROM dbo.Dim_Employee;
+GO
+
+DBCC CHECKIDENT ('dbo.Dim_Employee', RESEED, 0);
 GO
 
 
 /* ============================================================
-   3. XÁC ĐỊNH KHOẢNG NGÀY TỪ STAGING
+   3. TẠO BẢN GHI UNKNOWN EMPLOYEE
    ============================================================ */
 
-DECLARE @StartDate DATE;
-DECLARE @EndDate DATE;
+SET IDENTITY_INSERT dbo.Dim_Employee ON;
 
-SELECT
-    @StartDate = MIN(TRY_CONVERT(DATE, Transaction_Date)),
-    @EndDate   = MAX(TRY_CONVERT(DATE, Transaction_Date))
-FROM Fashion_Staging.stg.transactions;
+INSERT INTO dbo.Dim_Employee
+(
+    Employee_Key,
+    Employee_ID,
+    Store_ID,
+    Employee_Name,
+    Position
+)
+VALUES
+(
+    -1,
+    -1,
+    -1,
+    N'Unknown Employee',
+    N'Unknown'
+);
 
-
-/* Kiểm tra dữ liệu nguồn có ngày hợp lệ hay không */
-IF @StartDate IS NULL OR @EndDate IS NULL
-BEGIN
-    THROW 50006,
-          N'Không xác định được khoảng ngày từ stg.transactions.',
-          1;
-END;
+SET IDENTITY_INSERT dbo.Dim_Employee OFF;
+GO
 
 
 /* ============================================================
-   4. SINH DẢI NGÀY LIÊN TỤC
+   4. NẠP DỮ LIỆU TỪ STG.EMPLOYEES
    ============================================================ */
 
-;WITH DateSeries AS
+INSERT INTO dbo.Dim_Employee
 (
-    SELECT @StartDate AS Full_Date
-
-    UNION ALL
-
-    SELECT DATEADD(DAY, 1, Full_Date)
-    FROM DateSeries
-    WHERE Full_Date < @EndDate
+    Employee_ID,
+    Store_ID,
+    Employee_Name,
+    Position
 )
-
-INSERT INTO dbo.Dim_Date
-(
-    Date_Key,
-    Full_Date,
-    Day_Number,
-    Day_Name,
-    Day_Of_Week,
-    Week_Number,
-    Month_Number,
-    Month_Name,
-    Quarter_Number,
-    Year_Number,
-    Is_Weekend,
-    Season
-)
-
 SELECT
-    /* Date_Key dạng YYYYMMDD */
-    YEAR(Full_Date) * 10000
-        + MONTH(Full_Date) * 100
-        + DAY(Full_Date) AS Date_Key,
-
-    Full_Date,
-
-    DAY(Full_Date) AS Day_Number,
-
-    DATENAME(WEEKDAY, Full_Date) AS Day_Name,
-
-    /*
-       Day_Of_Week cố định:
-       Monday = 1
-       Tuesday = 2
-       ...
-       Sunday = 7
-
-       Không phụ thuộc SET DATEFIRST.
-    */
-    ((DATEDIFF(DAY, '19000101', Full_Date) % 7) + 1)
-        AS Day_Of_Week,
-
-    DATEPART(ISO_WEEK, Full_Date) AS Week_Number,
-
-    MONTH(Full_Date) AS Month_Number,
-
-    DATENAME(MONTH, Full_Date) AS Month_Name,
-
-    DATEPART(QUARTER, Full_Date) AS Quarter_Number,
-
-    YEAR(Full_Date) AS Year_Number,
-
-    /*
-       Weekend:
-       Saturday = 6
-       Sunday = 7
-    */
-    CASE
-        WHEN ((DATEDIFF(DAY, '19000101', Full_Date) % 7) + 1)
-             IN (6, 7)
-            THEN 1
-        ELSE 0
-    END AS Is_Weekend,
-
-    /*
-       Season theo quy ước bán cầu Bắc:
-
-       Spring : Mar-May
-       Summer : Jun-Aug
-       Autumn : Sep-Nov
-       Winter : Dec-Feb
-    */
-    CASE
-        WHEN MONTH(Full_Date) IN (3,4,5)
-            THEN N'Spring'
-
-        WHEN MONTH(Full_Date) IN (6,7,8)
-            THEN N'Summer'
-
-        WHEN MONTH(Full_Date) IN (9,10,11)
-            THEN N'Autumn'
-
-        ELSE N'Winter'
-    END AS Season
-
-FROM DateSeries
-
-OPTION (MAXRECURSION 0);
+    TRY_CONVERT(INT, Employee_ID),
+    TRY_CONVERT(INT, Store_ID),
+    NULLIF(LTRIM(RTRIM(Name)), ''),
+    NULLIF(LTRIM(RTRIM(Position)), '')
+FROM Fashion_Staging.stg.employees
+ORDER BY TRY_CONVERT(INT, Employee_ID);
 GO
 
 
@@ -179,178 +101,18 @@ GO
    ============================================================ */
 
 SELECT
-    COUNT(*) AS Total_Dim_Date
-FROM dbo.Dim_Date;
+    COUNT(*) AS Total_Dim_Employee,
+    COUNT(CASE WHEN Employee_ID = -1 THEN 1 END) AS Unknown_Employee_Count,
+    COUNT(CASE WHEN Employee_ID > 0 THEN 1 END) AS Staging_Employee_Count
+FROM dbo.Dim_Employee;
 GO
 
 
 /* ============================================================
-   6. KIỂM TRA NGÀY ĐẦU / NGÀY CUỐI
+   6. XEM DỮ LIỆU MẪU
    ============================================================ */
 
-SELECT
-    MIN(Full_Date) AS Ngay_Dau,
-    MAX(Full_Date) AS Ngay_Cuoi
-FROM dbo.Dim_Date;
-GO
-
-
-/* ============================================================
-   7. KIỂM TRA SỐ NGÀY MONG ĐỢI
-
-   Expected_Days =
-   DATEDIFF(DAY, StartDate, EndDate) + 1
-   ============================================================ */
-
-SELECT
-    DATEDIFF
-    (
-        DAY,
-        MIN(Full_Date),
-        MAX(Full_Date)
-    ) + 1 AS Expected_Days,
-
-    COUNT(*) AS Actual_Days
-
-FROM dbo.Dim_Date;
-GO
-
-
-/* ============================================================
-   8. KIỂM TRA DATE_KEY TRÙNG
-   Kết quả mong đợi: 0 dòng
-   ============================================================ */
-
-SELECT
-    Date_Key,
-    COUNT(*) AS SoLanXuatHien
-FROM dbo.Dim_Date
-GROUP BY Date_Key
-HAVING COUNT(*) > 1;
-GO
-
-
-/* ============================================================
-   9. KIỂM TRA FULL_DATE TRÙNG
-   Kết quả mong đợi: 0 dòng
-   ============================================================ */
-
-SELECT
-    Full_Date,
-    COUNT(*) AS SoLanXuatHien
-FROM dbo.Dim_Date
-GROUP BY Full_Date
-HAVING COUNT(*) > 1;
-GO
-
-
-/* ============================================================
-   10. KIỂM TRA DATE_KEY CÓ ĐÚNG YYYYMMDD
-   Kết quả mong đợi: 0 dòng
-   ============================================================ */
-
-SELECT
-    Date_Key,
-    Full_Date
-FROM dbo.Dim_Date
-WHERE Date_Key <>
-      YEAR(Full_Date) * 10000
-      + MONTH(Full_Date) * 100
-      + DAY(Full_Date);
-GO
-
-
-/* ============================================================
-   11. KIỂM TRA DAY_OF_WEEK
-   ============================================================ */
-
-SELECT
-    Day_Of_Week,
-    Day_Name,
-    COUNT(*) AS So_Ngay
-FROM dbo.Dim_Date
-GROUP BY
-    Day_Of_Week,
-    Day_Name
-ORDER BY Day_Of_Week;
-GO
-
-
-/* ============================================================
-   12. KIỂM TRA WEEKEND
-   ============================================================ */
-
-SELECT
-    Is_Weekend,
-    COUNT(*) AS So_Ngay
-FROM dbo.Dim_Date
-GROUP BY Is_Weekend
-ORDER BY Is_Weekend;
-GO
-
-
-/* ============================================================
-   13. KIỂM TRA SEASON
-   ============================================================ */
-
-SELECT
-    Season,
-    COUNT(*) AS So_Ngay
-FROM dbo.Dim_Date
-GROUP BY Season
-ORDER BY Season;
-GO
-
-
-/* ============================================================
-   14. KIỂM TRA NĂM / QUÝ
-   ============================================================ */
-
-SELECT
-    Year_Number,
-    Quarter_Number,
-    COUNT(*) AS So_Ngay
-FROM dbo.Dim_Date
-GROUP BY
-    Year_Number,
-    Quarter_Number
-ORDER BY
-    Year_Number,
-    Quarter_Number;
-GO
-
-
-/* ============================================================
-   15. XEM DỮ LIỆU MẪU
-   ============================================================ */
-
-SELECT TOP (20)
-    Date_Key,
-    Full_Date,
-    Day_Number,
-    Day_Name,
-    Day_Of_Week,
-    Week_Number,
-    Month_Number,
-    Month_Name,
-    Quarter_Number,
-    Year_Number,
-    Is_Weekend,
-    Season
-FROM dbo.Dim_Date
-ORDER BY Full_Date;
-GO
-
-
-/* ============================================================
-   16. KIỂM TRA CUỐI
-   ============================================================ */
-
-SELECT
-    COUNT(*) AS Total_Days,
-    MIN(Date_Key) AS Min_Date_Key,
-    MAX(Date_Key) AS Max_Date_Key,
-    MIN(Full_Date) AS Min_Full_Date,
-    MAX(Full_Date) AS Max_Full_Date
-FROM dbo.Dim_Date;
+SELECT TOP 10 *
+FROM dbo.Dim_Employee
+ORDER BY Employee_Key;
 GO
