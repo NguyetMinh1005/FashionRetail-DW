@@ -1,25 +1,25 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/26/2026 1:11:01 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="NGUYET-MINH"
   DTS:CreatorName="NGUYET-MINH\Admin"
-  DTS:DTSID="{4497E6FC-2738-45E3-B115-0BF03CB13335}"
+  DTS:DTSID="{EA23EA8A-EF40-4FDC-92BC-E0AC0AA071B5}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="17.0.1016.0"
   DTS:LocaleID="1066"
   DTS:ObjectName="01_Load_Customers_STG"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{970B21A5-3DE8-4DEA-A912-B39674062391}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{639BCA82-501E-4733-999F-C5BD226F5F0A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[FF_cleaned_customers]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{FF118531-3939-4294-A19F-BD21FFC1BDC5}"
+      DTS:DTSID="{BBFB07B0-FB5C-44E3-8EB3-1D836F44555B}"
       DTS:ObjectName="FF_cleaned_customers">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -39,52 +39,52 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Customer ID"
-              DTS:DTSID="{67142DF0-8A9B-4596-971B-6FDD1E4C6814}"
+              DTS:DTSID="{3E43FF87-6137-4918-B1A8-545A39FA27CE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="150"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Name"
-              DTS:DTSID="{E2C4083E-F3B0-41D7-B9DE-A9BA5FB8A51F}"
+              DTS:DTSID="{4E16D665-4166-458E-B51D-014AEA5D5BB1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="200"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Email"
-              DTS:DTSID="{42D279A8-59D0-4F58-94C9-220F17F7D22B}"
+              DTS:DTSID="{EC1B30C0-0588-48F3-A950-FD3AA61FC1E8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="80"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Telephone"
-              DTS:DTSID="{B1BFE608-2402-479D-9E9B-212CC0451B60}"
+              DTS:DTSID="{26ABC417-9BC6-4B84-B889-2CD1845633B6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="100"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="City"
-              DTS:DTSID="{4F1AF616-2CE1-4399-9E26-3AB21C110384}"
+              DTS:DTSID="{0EF915E8-5566-4DAE-A583-7A28698B7D33}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="100"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Country"
-              DTS:DTSID="{1492E2CD-FE77-49A5-8693-1E7BABAE18BD}"
+              DTS:DTSID="{18444206-FCE5-421A-8593-2C79A95F65D7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -93,7 +93,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Gender"
-              DTS:DTSID="{EFCA749D-1D2E-42D7-BD29-263604A6E462}"
+              DTS:DTSID="{B4061CD1-4FB5-4E15-BDE5-6EFE4466014D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -102,16 +102,16 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Date Of Birth"
-              DTS:DTSID="{011ACC0E-49B0-4DB4-BD2C-AEF56367CE69}"
+              DTS:DTSID="{1187A0BB-08D5-4B80-BFC2-ED50D2882478}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="50"
+              DTS:MaximumWidth="500"
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Job Title"
-              DTS:DTSID="{44402EB1-CBB1-4434-BB22-98B14F2D0A0B}"
+              DTS:DTSID="{10AF2FE8-C8D1-428B-B113-6A03FBE0BCA5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -120,7 +120,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Age"
-              DTS:DTSID="{538E4766-D2A9-48E8-BC6D-251F8C0489F9}"
+              DTS:DTSID="{DD72F11D-2EF3-4AB3-984F-36EE80660816}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -129,7 +129,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Age_Group"
-              DTS:DTSID="{DD5F701E-6A5A-405A-8822-9DF213571116}"
+              DTS:DTSID="{AB481747-B563-4D74-957F-DE33BF572651}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -138,13 +138,13 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[localhost.Fashion_Staging]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{7A575DF2-927E-426A-9A2E-9045127FD7CD}"
+      DTS:DTSID="{042FA806-2820-401C-873D-271F8C5D86AB}"
       DTS:ObjectName="localhost.Fashion_Staging">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Fashion_Staging;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-01_Load_Customers_STG-{7A575DF2-927E-426A-9A2E-9045127FD7CD}localhost.Fashion_Staging;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Fashion_Staging;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-01_Load_Customers_STG-{042FA806-2820-401C-873D-271F8C5D86AB}localhost.Fashion_Staging;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -154,7 +154,7 @@
       DTS:refId="Package\Load_Customers_STG"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{69AD5438-338D-4762-8959-757E2A9BF655}"
+      DTS:DTSID="{47FC900C-0910-4F60-BEE9-96976C37EB76}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Load_Customers_STG"
@@ -164,6 +164,364 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\Load_Customers_STG\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Customer ID]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Customer ID"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Customer ID]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Name]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="Name"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Email]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Email"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Email]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Telephone]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="Telephone"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Telephone]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[City]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="City"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Country]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Country"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Gender]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Gender"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Gender]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Date Of Birth]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Date Of Birth"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Date Of Birth]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Job Title]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="Job Title"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Job Title]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Age]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Age"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Age]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Age_Group]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Age_Group"
+                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Age_Group]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Customer_ID_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Customer_ID_U]"
+                      name="Customer_ID_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Customer ID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Name_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="150"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Name_U]"
+                      name="Name_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Name]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Email_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Email_U]"
+                      name="Email_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Email]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Telephone_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="80"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Telephone_U]"
+                      name="Telephone_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Telephone]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[City_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[City_U]"
+                      name="City_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[City]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Country_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Country_U]"
+                      name="Country_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Country]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Gender_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="5"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Gender_U]"
+                      name="Gender_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Gender]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Date_Of_Birth_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Date_Of_Birth_U]"
+                      name="Date_Of_Birth_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Date Of Birth]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Job_Title_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Job_Title_U]"
+                      name="Job_Title_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Job Title]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Age_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Age_U]"
+                      name="Age_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Age]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Age_Group_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="30"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Age_Group_U]"
+                      name="Age_Group_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Age_Group]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\Load_Customers_STG\Flat File Source"
               componentClassID="Microsoft.FlatFileSource"
@@ -224,7 +582,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Name]"
-                      length="50"
+                      length="150"
                       lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Name]"
                       name="Name"
                       truncationRowDisposition="FailComponent">
@@ -246,7 +604,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Email]"
-                      length="50"
+                      length="200"
                       lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Email]"
                       name="Email"
                       truncationRowDisposition="FailComponent">
@@ -268,7 +626,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Telephone]"
-                      length="50"
+                      length="80"
                       lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Telephone]"
                       name="Telephone"
                       truncationRowDisposition="FailComponent">
@@ -290,7 +648,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[City]"
-                      length="50"
+                      length="100"
                       lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[City]"
                       name="City"
                       truncationRowDisposition="FailComponent">
@@ -312,7 +670,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Country]"
-                      length="50"
+                      length="100"
                       lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Country]"
                       name="Country"
                       truncationRowDisposition="FailComponent">
@@ -378,7 +736,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Job Title]"
-                      length="50"
+                      length="500"
                       lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Job Title]"
                       name="Job Title"
                       truncationRowDisposition="FailComponent">
@@ -450,31 +808,31 @@
                       refId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Name]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="150"
                       name="Name" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Email]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="200"
                       name="Email" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Telephone]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="80"
                       name="Telephone" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[City]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="100"
                       name="City" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Country]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="100"
                       name="Country" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Gender]"
@@ -492,7 +850,7 @@
                       refId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Job Title]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="500"
                       name="Job Title" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Age]"
@@ -610,93 +968,82 @@
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Name]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Name"
-                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Name]" />
-                    <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Email]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Email"
-                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Email]" />
-                    <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Telephone]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Telephone"
-                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Telephone]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Telephone]" />
-                    <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[City]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="City"
-                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[City]" />
-                    <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Country]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Country"
-                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Country]" />
-                    <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Gender]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Gender"
-                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Gender]" />
-                    <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Age]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Age"
-                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Age]" />
-                    <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Age_Group]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Age_Group"
-                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age_Group]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Age_Group]" />
-                    <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Customer ID]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Customer ID"
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Customer_ID_U]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Customer_ID_U"
                       externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer_ID]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Customer ID]" />
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Customer_ID_U]" />
                     <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Date Of Birth]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Date Of Birth"
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Name_U]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="Name_U"
+                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Name_U]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Email_U]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Email_U"
+                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Email_U]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Telephone_U]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Telephone_U"
+                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Telephone]"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Telephone_U]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[City_U]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="City_U"
+                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[City_U]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Country_U]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Country_U"
+                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Country_U]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Gender_U]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="Gender_U"
+                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Gender_U]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Date_Of_Birth_U]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Date_Of_Birth_U"
                       externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Date_Of_Birth]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Date Of Birth]" />
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Date_Of_Birth_U]" />
                     <inputColumn
-                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Job Title]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Job Title"
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Job_Title_U]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="Job_Title_U"
                       externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Job_Title]"
-                      lineageId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Job Title]" />
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Job_Title_U]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Age_U]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Age_U"
+                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Age_U]" />
+                    <inputColumn
+                      refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Age_Group_U]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Age_Group_U"
+                      externalMetadataColumnId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age_Group]"
+                      lineageId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Age_Group_U]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -708,17 +1055,17 @@
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
                       dataType="wstr"
-                      length="100"
+                      length="150"
                       name="Name" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
                       dataType="wstr"
-                      length="150"
+                      length="200"
                       name="Email" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Telephone]"
                       dataType="wstr"
-                      length="50"
+                      length="80"
                       name="Telephone" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
@@ -743,7 +1090,7 @@
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Job_Title]"
                       dataType="wstr"
-                      length="100"
+                      length="500"
                       name="Job_Title" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
@@ -753,7 +1100,7 @@
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age_Group]"
                       dataType="wstr"
-                      length="20"
+                      length="30"
                       name="Age_Group" />
                     <externalMetadataColumn
                       refId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Source_File]"
@@ -795,8 +1142,13 @@
           </components>
           <paths>
             <path
-              refId="Package\Load_Customers_STG.Paths[Flat File Source Output]"
+              refId="Package\Load_Customers_STG.Paths[Data Conversion Output]"
               endId="Package\Load_Customers_STG\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Load_Customers_STG\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Load_Customers_STG.Paths[Flat File Source Output]"
+              endId="Package\Load_Customers_STG\Data Conversion.Inputs[Data Conversion Input]"
               name="Flat File Source Output"
               startId="Package\Load_Customers_STG\Flat File Source.Outputs[Flat File Source Output]" />
           </paths>
@@ -827,29 +1179,79 @@
     design-time-name="Package\Load_Customers_STG">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load_Customers_STG\OLE DB Destination"
+          TopLeft="448.333308837481,16.4666665521595" />
         <NodeLayout
           Size="151.2,41.6"
           Id="Package\Load_Customers_STG\Flat File Source"
           TopLeft="131.666659472717,15.5999998915195" />
         <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Load_Customers_STG\OLE DB Destination"
-          TopLeft="421.666643627817,19.9333331947194" />
+          Size="156,41.6"
+          Id="Package\Load_Customers_STG\Data Conversion"
+          TopLeft="194.99998934567,130.866665756636" />
         <EdgeLayout
           Id="Package\Load_Customers_STG.Paths[Flat File Source Output]"
-          TopLeft="282.866659472717,38.5666665431195">
+          TopLeft="207.266659472717,57.1999998915195">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="138.799984155099,0"
+              EndConnector="65.7333298729532,73.6666658651167"
               Start="0,0"
-              End="131.299984155099,0">
+              End="65.7333298729532,66.1666658651167">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="131.299984155099,0" />
+                    End="0,32.8333329325584" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.8333329325584"
+                    Point2="0,36.8333329325584"
+                    Point3="4,36.8333329325584" />
+                  <mssgle:LineSegment
+                    End="61.7333298729532,36.8333329325584" />
+                  <mssgle:CubicBezierSegment
+                    Point1="61.7333298729532,36.8333329325584"
+                    Point2="65.7333298729532,36.8333329325584"
+                    Point3="65.7333298729532,40.8333329325584" />
+                  <mssgle:LineSegment
+                    End="65.7333298729532,66.1666658651167" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Customers_STG.Paths[Data Conversion Output]"
+          TopLeft="297.666656012337,130.866665756636">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="236.266652825144,-72.7999992044767"
+              Start="0,0"
+              End="236.266652825144,-65.2999992044767">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-25.5634514535946" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-25.5634514535946"
+                    Point2="0,-29.5634514535946"
+                    Point3="4,-29.5634514535946" />
+                  <mssgle:LineSegment
+                    End="232.266652825144,-29.5634514535946" />
+                  <mssgle:CubicBezierSegment
+                    Point1="232.266652825144,-29.5634514535946"
+                    Point2="236.266652825144,-29.5634514535946"
+                    Point3="236.266652825144,-33.5634514535946" />
+                  <mssgle:LineSegment
+                    End="236.266652825144,-65.2999992044767" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

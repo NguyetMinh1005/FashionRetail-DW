@@ -1,0 +1,741 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/26/2026 1:11:01 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NGUYET-MINH"
+  DTS:CreatorName="NGUYET-MINH\Admin"
+  DTS:DTSID="{CE63F626-BF7C-4A7B-8028-8FE1F8BDEE3A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1066"
+  DTS:ObjectName="03_Load_Stores_STG"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{362C6A25-5E41-4D65-9F2F-6548E32A0F88}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FF_cleaned_employees]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{2566A488-6DE5-41E9-BEB6-4BB36F57DB8A}"
+      DTS:ObjectName="FF_cleaned_employees">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1066"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="E:\FashionRetail-DW\data\cleaned\cleaned_employees.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Employee ID"
+              DTS:DTSID="{6E7FAE37-A960-4DC0-B700-BFBC491B7197}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Store ID"
+              DTS:DTSID="{BE9E1771-5C9F-4B24-8A32-C49FE9D7D73C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Name"
+              DTS:DTSID="{D3A319CB-E95C-41B2-965E-DDE9A80F3194}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Position"
+              DTS:DTSID="{0BAF1B48-52A8-4935-935A-A1AEE0E92EC4}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.Fashion_Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DBDDB1B5-3846-4D43-8A86-2657524D3D1D}"
+      DTS:ObjectName="localhost.Fashion_Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Fashion_Staging;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-01_Load_Customers_STG-{DBDDB1B5-3846-4D43-8A86-2657524D3D1D}localhost.Fashion_Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load_Employees_STG"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7827F529-BF0A-4437-8E02-7E88ED8A4AED}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_Employees_STG"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load_Employees_STG\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_Employees_STG\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_Employees_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Store ID]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Store ID"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Store ID]" />
+                    <inputColumn
+                      refId="Package\Load_Employees_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Employee ID]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Employee ID"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Employee ID]" />
+                    <inputColumn
+                      refId="Package\Load_Employees_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Name]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Name"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Load_Employees_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Position]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Position"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Position]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Load_Employees_STG\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Store_ID_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Store_ID_U]"
+                      name="Store_ID_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Store ID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Employee_ID_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Employee_ID_U]"
+                      name="Employee_ID_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Employee ID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Name_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Name_U]"
+                      name="Name_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Name]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Position_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Position_U]"
+                      name="Position_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Position]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Load_Employees_STG\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_Employees_STG\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1066"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_Employees_STG\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[FF_cleaned_employees]"
+                  connectionManagerRefId="Package.ConnectionManagers[FF_cleaned_employees]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Store ID]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Store ID]"
+                      length="50"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Store ID]"
+                      name="Store ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Employee ID]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Employee ID]"
+                      length="50"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Employee ID]"
+                      name="Employee ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Name]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Name]"
+                      length="100"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Position]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Position]"
+                      length="100"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Position]"
+                      name="Position"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Store ID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Store ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Employee ID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Employee ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Name]"
+                      codePage="65001"
+                      dataType="str"
+                      length="100"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Position]"
+                      codePage="65001"
+                      dataType="str"
+                      length="100"
+                      name="Position" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_Employees_STG\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[employees]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_Employees_STG\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.Fashion_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.Fashion_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Store_ID_U]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Store_ID_U"
+                      externalMetadataColumnId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Store_ID]"
+                      lineageId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Store_ID_U]" />
+                    <inputColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Employee_ID_U]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Employee_ID_U"
+                      externalMetadataColumnId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Employee_ID]"
+                      lineageId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Employee_ID_U]" />
+                    <inputColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Name_U]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Name_U"
+                      externalMetadataColumnId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Name_U]" />
+                    <inputColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Position_U]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Position_U"
+                      externalMetadataColumnId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Position]"
+                      lineageId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Position_U]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Source_File]"
+                      dataType="wstr"
+                      length="100"
+                      name="Source_File" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Load_Date]"
+                      dataType="dbTimeStamp2"
+                      name="Load_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Store_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="Store_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Employee_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="Employee_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="100"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Position]"
+                      dataType="wstr"
+                      length="50"
+                      name="Position" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_Employees_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_Employees_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_Employees_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_Employees_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load_Employees_STG.Paths[Data Conversion Output]"
+              endId="Package\Load_Employees_STG\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Load_Employees_STG\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Load_Employees_STG.Paths[Flat File Source Output]"
+              endId="Package\Load_Employees_STG\Data Conversion.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\Load_Employees_STG\Flat File Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="185.6,41.6"
+          Id="Package\Load_Employees_STG"
+          TopLeft="118.333326867885,35.533333086239" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load_Employees_STG">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Load_Employees_STG\Flat File Source"
+          TopLeft="131.666659472717,15.5999998915195" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Load_Employees_STG\Data Conversion"
+          TopLeft="194.99998934567,130.866665756636" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load_Employees_STG\OLE DB Destination"
+          TopLeft="448.333308837481,16.4666665521595" />
+        <EdgeLayout
+          Id="Package\Load_Employees_STG.Paths[Flat File Source Output]"
+          TopLeft="207.266659472717,57.1999998915195">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65.7333298729532,73.6666658651167"
+              Start="0,0"
+              End="65.7333298729532,66.1666658651167">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.8333329325584" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.8333329325584"
+                    Point2="0,36.8333329325584"
+                    Point3="4,36.8333329325584" />
+                  <mssgle:LineSegment
+                    End="61.7333298729532,36.8333329325584" />
+                  <mssgle:CubicBezierSegment
+                    Point1="61.7333298729532,36.8333329325584"
+                    Point2="65.7333298729532,36.8333329325584"
+                    Point3="65.7333298729532,40.8333329325584" />
+                  <mssgle:LineSegment
+                    End="65.7333298729532,66.1666658651167" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Employees_STG.Paths[Data Conversion Output]"
+          TopLeft="297.666656012337,130.866665756636">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="236.266652825144,-72.7999992044767"
+              Start="0,0"
+              End="236.266652825144,-65.2999992044767">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-25.5634514535946" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-25.5634514535946"
+                    Point2="0,-29.5634514535946"
+                    Point3="4,-29.5634514535946" />
+                  <mssgle:LineSegment
+                    End="232.266652825144,-29.5634514535946" />
+                  <mssgle:CubicBezierSegment
+                    Point1="232.266652825144,-29.5634514535946"
+                    Point2="236.266652825144,-29.5634514535946"
+                    Point3="236.266652825144,-33.5634514535946" />
+                  <mssgle:LineSegment
+                    End="236.266652825144,-65.2999992044767" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_Employees_STG\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

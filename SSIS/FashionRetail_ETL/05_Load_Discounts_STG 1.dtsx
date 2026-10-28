@@ -1,0 +1,895 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/26/2026 1:11:01 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NGUYET-MINH"
+  DTS:CreatorName="NGUYET-MINH\Admin"
+  DTS:DTSID="{14444134-5456-41A1-A9E0-7ACDEA9C478B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1066"
+  DTS:ObjectName="05_Load_Discounts_STG"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{66DE26B3-5AD5-45D0-AEF6-45FD8C80CC4A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FF_cleaned_discounts]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{B662DB6E-06CD-4FC3-B1AF-B60D8CB7CDBC}"
+      DTS:ObjectName="FF_cleaned_discounts">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1066"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="E:\FashionRetail-DW\data\cleaned\cleaned_discounts.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Start"
+              DTS:DTSID="{5E67E286-E3B4-4496-81E5-F28D10ACC0B4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="End"
+              DTS:DTSID="{7036036F-4549-438D-AF47-496E43BDE862}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Discount"
+              DTS:DTSID="{656B16F9-E95D-4E14-8333-027E249E565B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Description"
+              DTS:DTSID="{642BC3BC-D35C-4246-947A-FA159E1A2328}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Category"
+              DTS:DTSID="{3988FED4-A2D7-439B-94AD-3649CAB587A9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Sub Category"
+              DTS:DTSID="{B02316B9-0461-4EBE-9E7B-F2E95700637D}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.Fashion_Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{18D35908-A462-4651-A3C6-46171EB5F3E6}"
+      DTS:ObjectName="localhost.Fashion_Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Fashion_Staging;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-01_Load_Customers_STG-{18D35908-A462-4651-A3C6-46171EB5F3E6}localhost.Fashion_Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load_Discounts_STG"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D1B13ACF-9455-426C-87E7-2B02F2C96F63}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_Discounts_STG"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load_Discounts_STG\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_Discounts_STG\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Start]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Start"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Start]" />
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Inputs[Data Conversion Input].Columns[End]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="End"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[End]" />
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Discount]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Discount"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Discount]" />
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Description]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Description"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Category]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Category"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Category]" />
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Sub Category]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Sub Category"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sub Category]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Load_Discounts_STG\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Start_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Start_U]"
+                      name="Start_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Start]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[End_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[End_U]"
+                      name="End_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[End]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Discount_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Discount_U]"
+                      name="Discount_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Discount]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_U]"
+                      name="Description_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Category_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Category_U]"
+                      name="Category_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Category]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Sub_Category_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Sub_Category_U]"
+                      name="Sub_Category_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sub Category]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Load_Discounts_STG\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_Discounts_STG\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1066"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_Discounts_STG\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[FF_cleaned_discounts]"
+                  connectionManagerRefId="Package.ConnectionManagers[FF_cleaned_discounts]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Start]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Start]"
+                      length="50"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Start]"
+                      name="Start"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[End]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[End]"
+                      length="50"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[End]"
+                      name="End"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Discount]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Discount]"
+                      length="50"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Discount]"
+                      name="Discount"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description]"
+                      length="200"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Category]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Category]"
+                      length="100"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Category]"
+                      name="Category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sub Category]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Sub Category]"
+                      length="100"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sub Category]"
+                      name="Sub Category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Start]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Start" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[End]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="End" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Discount]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Discount" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description]"
+                      codePage="65001"
+                      dataType="str"
+                      length="200"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Category]"
+                      codePage="65001"
+                      dataType="str"
+                      length="100"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Sub Category]"
+                      codePage="65001"
+                      dataType="str"
+                      length="100"
+                      name="Sub Category" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_Discounts_STG\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[discounts]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_Discounts_STG\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.Fashion_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.Fashion_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Start_U]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Start_U"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Start]"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Start_U]" />
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[End_U]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="End_U"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[End]"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[End_U]" />
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Discount_U]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Discount_U"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Discount_U]" />
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description_U]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Description_U"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_U]" />
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Category_U]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Category_U"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Category_U]" />
+                    <inputColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Sub_Category_U]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Sub_Category_U"
+                      externalMetadataColumnId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sub_Category]"
+                      lineageId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Sub_Category_U]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Source_File]"
+                      dataType="wstr"
+                      length="100"
+                      name="Source_File" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Load_Date]"
+                      dataType="dbTimeStamp2"
+                      name="Load_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Start]"
+                      dataType="wstr"
+                      length="30"
+                      name="Start" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[End]"
+                      dataType="wstr"
+                      length="30"
+                      name="End" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      dataType="wstr"
+                      length="10"
+                      name="Discount" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="100"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="60"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sub_Category]"
+                      dataType="wstr"
+                      length="60"
+                      name="Sub_Category" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_Discounts_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_Discounts_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_Discounts_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_Discounts_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load_Discounts_STG.Paths[Data Conversion Output]"
+              endId="Package\Load_Discounts_STG\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Load_Discounts_STG\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Load_Discounts_STG.Paths[Flat File Source Output]"
+              endId="Package\Load_Discounts_STG\Data Conversion.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\Load_Discounts_STG\Flat File Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\Load_Discounts_STG"
+          TopLeft="118.333326867885,35.533333086239" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load_Discounts_STG">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Load_Discounts_STG\Flat File Source"
+          TopLeft="131.666659472717,15.5999998915195" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Load_Discounts_STG\Data Conversion"
+          TopLeft="194.99998934567,130.866665756636" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load_Discounts_STG\OLE DB Destination"
+          TopLeft="448.333308837481,16.4666665521595" />
+        <EdgeLayout
+          Id="Package\Load_Discounts_STG.Paths[Flat File Source Output]"
+          TopLeft="207.266659472717,57.1999998915195">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65.7333298729532,73.6666658651167"
+              Start="0,0"
+              End="65.7333298729532,66.1666658651167">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.8333329325584" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.8333329325584"
+                    Point2="0,36.8333329325584"
+                    Point3="4,36.8333329325584" />
+                  <mssgle:LineSegment
+                    End="61.7333298729532,36.8333329325584" />
+                  <mssgle:CubicBezierSegment
+                    Point1="61.7333298729532,36.8333329325584"
+                    Point2="65.7333298729532,36.8333329325584"
+                    Point3="65.7333298729532,40.8333329325584" />
+                  <mssgle:LineSegment
+                    End="65.7333298729532,66.1666658651167" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Discounts_STG.Paths[Data Conversion Output]"
+          TopLeft="297.666656012337,130.866665756636">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="236.266652825144,-72.7999992044767"
+              Start="0,0"
+              End="236.266652825144,-65.2999992044767">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-25.5634514535946" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-25.5634514535946"
+                    Point2="0,-29.5634514535946"
+                    Point3="4,-29.5634514535946" />
+                  <mssgle:LineSegment
+                    End="232.266652825144,-29.5634514535946" />
+                  <mssgle:CubicBezierSegment
+                    Point1="232.266652825144,-29.5634514535946"
+                    Point2="236.266652825144,-29.5634514535946"
+                    Point3="236.266652825144,-33.5634514535946" />
+                  <mssgle:LineSegment
+                    End="236.266652825144,-65.2999992044767" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_Discounts_STG\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

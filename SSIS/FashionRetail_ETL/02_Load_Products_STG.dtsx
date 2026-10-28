@@ -1,0 +1,1357 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/26/2026 1:11:01 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NGUYET-MINH"
+  DTS:CreatorName="NGUYET-MINH\Admin"
+  DTS:DTSID="{15F42DC9-C398-4E3A-888D-1C567D6AFACD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1066"
+  DTS:ObjectName="02_Load_Products_STG"
+  DTS:PackageType="5"
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{CC862CD6-BB60-496F-B2DC-CC765D4376A7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FF_cleaned_products]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{9F4706D2-E24B-4CE5-BBC7-551D2BAACDC0}"
+      DTS:ObjectName="FF_cleaned_products">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1066"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="E:\FashionRetail-DW\data\cleaned\cleaned_products.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Product ID"
+              DTS:DTSID="{E1E21970-8E08-43D8-9B92-E7D7CACA3676}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Category"
+              DTS:DTSID="{FCDB30C8-998D-4D1C-9EF2-F439E8F0DCE0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Sub Category"
+              DTS:DTSID="{44D9B80B-8F70-4115-A300-2F8306CFCCA4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="500"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Description PT"
+              DTS:DTSID="{E5D0195B-E901-4F90-A23D-4DC906C2EE27}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="500"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Description DE"
+              DTS:DTSID="{DFFAE741-12A8-4DB2-AC34-77F67D066CE5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="500"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Description FR"
+              DTS:DTSID="{DAA0409D-7741-4074-8517-0D2FA2308E10}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="500"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Description ES"
+              DTS:DTSID="{B954706F-48FE-4F8E-88F8-602BACB0E525}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="500"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Description EN"
+              DTS:DTSID="{D43A543F-DD4C-4D77-AC7D-912871198887}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="500"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Description ZH"
+              DTS:DTSID="{49C893CE-C961-42F3-9C22-98368EA2EF71}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Color"
+              DTS:DTSID="{06B119EB-D591-4F3A-B909-945211D3B8C6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Sizes"
+              DTS:DTSID="{19E70F93-FB82-4D24-B7F7-B0EBBBB9494C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Production Cost"
+              DTS:DTSID="{C4C20E0A-D8DE-4C24-82CD-38DD5829B9A4}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.Fashion_Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B33B018B-3EDB-443D-A2F8-A3FD42A7CB9F}"
+      DTS:ObjectName="localhost.Fashion_Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Fashion_Staging;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-01_Load_Customers_STG-{B33B018B-3EDB-443D-A2F8-A3FD42A7CB9F}localhost.Fashion_Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load_Products_STG"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9C57C60B-EA32-4E16-B7A7-19667F25DFDB}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_Products_STG"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load_Products_STG\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Description ES]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="Description ES"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description ES]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Description EN]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="Description EN"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description EN]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Description ZH]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="Description ZH"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description ZH]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Color]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Color"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Color]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Sizes]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Sizes"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sizes]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Production Cost]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Production Cost"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Production Cost]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Product ID]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Product ID"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Product ID]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Description PT]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="Description PT"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description PT]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Description DE]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="Description DE"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description DE]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Description FR]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="Description FR"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description FR]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Category]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Category"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Category]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input].Columns[Sub Category]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Sub Category"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sub Category]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_ES_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_ES_U]"
+                      name="Description_ES_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description ES]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_EN_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_EN_U]"
+                      name="Description_EN_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description EN]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_ZH_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_ZH_U]"
+                      name="Description_ZH_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description ZH]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Color_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Color_U]"
+                      name="Color_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Color]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Sizes_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Sizes_U]"
+                      name="Sizes_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sizes]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Production_Cost_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Production_Cost_U]"
+                      name="Production_Cost_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Production Cost]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Product_ID_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Product_ID_U]"
+                      name="Product_ID_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Product ID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_PT_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_PT_U]"
+                      name="Description_PT_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description PT]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_DE_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_DE_U]"
+                      name="Description_DE_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description DE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_FR_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_FR_U]"
+                      name="Description_FR_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description FR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Category_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Category_U]"
+                      name="Category_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Category]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Sub_Category_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Sub_Category_U]"
+                      name="Sub_Category_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sub Category]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_Products_STG\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1066"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_Products_STG\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[FF_cleaned_products]"
+                  connectionManagerRefId="Package.ConnectionManagers[FF_cleaned_products]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Product ID]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Product ID]"
+                      length="50"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Product ID]"
+                      name="Product ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Category]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Category]"
+                      length="100"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Category]"
+                      name="Category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sub Category]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Sub Category]"
+                      length="100"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sub Category]"
+                      name="Sub Category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description PT]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description PT]"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description PT]"
+                      name="Description PT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description DE]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description DE]"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description DE]"
+                      name="Description DE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description FR]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description FR]"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description FR]"
+                      name="Description FR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description ES]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description ES]"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description ES]"
+                      name="Description ES"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description EN]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description EN]"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description EN]"
+                      name="Description EN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description ZH]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description ZH]"
+                      length="500"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Description ZH]"
+                      name="Description ZH"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Color]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Color]"
+                      length="100"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Color]"
+                      name="Color"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sizes]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Sizes]"
+                      length="100"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Sizes]"
+                      name="Sizes"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Production Cost]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Production Cost]"
+                      length="50"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].Columns[Production Cost]"
+                      name="Production Cost"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Product ID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Product ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Category]"
+                      codePage="65001"
+                      dataType="str"
+                      length="100"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Sub Category]"
+                      codePage="65001"
+                      dataType="str"
+                      length="100"
+                      name="Sub Category" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description PT]"
+                      codePage="65001"
+                      dataType="str"
+                      length="500"
+                      name="Description PT" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description DE]"
+                      codePage="65001"
+                      dataType="str"
+                      length="500"
+                      name="Description DE" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description FR]"
+                      codePage="65001"
+                      dataType="str"
+                      length="500"
+                      name="Description FR" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description ES]"
+                      codePage="65001"
+                      dataType="str"
+                      length="500"
+                      name="Description ES" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description EN]"
+                      codePage="65001"
+                      dataType="str"
+                      length="500"
+                      name="Description EN" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Description ZH]"
+                      codePage="65001"
+                      dataType="str"
+                      length="500"
+                      name="Description ZH" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Color]"
+                      codePage="65001"
+                      dataType="str"
+                      length="100"
+                      name="Color" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Sizes]"
+                      codePage="65001"
+                      dataType="str"
+                      length="100"
+                      name="Sizes" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Production Cost]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Production Cost" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_Products_STG\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[products]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_Products_STG\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.Fashion_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.Fashion_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Product_ID_U]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Product_ID_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product_ID]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Product_ID_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Category_U]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Category_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Category_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Sub_Category_U]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Sub_Category_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sub_Category]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Sub_Category_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description_PT_U]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="Description_PT_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_PT]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_PT_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description_DE_U]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="Description_DE_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_DE]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_DE_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description_FR_U]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="Description_FR_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_FR]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_FR_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description_ES_U]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="Description_ES_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_ES]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_ES_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description_EN_U]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="Description_EN_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_EN]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_EN_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Description_ZH_U]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="Description_ZH_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_ZH]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Description_ZH_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Color_U]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Color_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Color]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Color_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Sizes_U]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Sizes_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sizes]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Sizes_U]" />
+                    <inputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Production_Cost_U]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Production_Cost_U"
+                      externalMetadataColumnId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Production_Cost]"
+                      lineageId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output].Columns[Production_Cost_U]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Source_File]"
+                      dataType="wstr"
+                      length="100"
+                      name="Source_File" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Load_Date]"
+                      dataType="dbTimeStamp2"
+                      name="Load_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="Product_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="60"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sub_Category]"
+                      dataType="wstr"
+                      length="60"
+                      name="Sub_Category" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_PT]"
+                      dataType="wstr"
+                      length="500"
+                      name="Description_PT" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_DE]"
+                      dataType="wstr"
+                      length="500"
+                      name="Description_DE" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_FR]"
+                      dataType="wstr"
+                      length="500"
+                      name="Description_FR" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_ES]"
+                      dataType="wstr"
+                      length="500"
+                      name="Description_ES" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_EN]"
+                      dataType="wstr"
+                      length="500"
+                      name="Description_EN" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Description_ZH]"
+                      dataType="wstr"
+                      length="500"
+                      name="Description_ZH" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Color]"
+                      dataType="wstr"
+                      length="50"
+                      name="Color" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sizes]"
+                      dataType="wstr"
+                      length="100"
+                      name="Sizes" />
+                    <externalMetadataColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Production_Cost]"
+                      dataType="wstr"
+                      length="30"
+                      name="Production_Cost" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_Products_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_Products_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_Products_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_Products_STG\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load_Products_STG.Paths[Data Conversion Output]"
+              endId="Package\Load_Products_STG\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Load_Products_STG\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Load_Products_STG.Paths[Flat File Source Output]"
+              endId="Package\Load_Products_STG\Data Conversion.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\Load_Products_STG\Flat File Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\Load_Products_STG"
+          TopLeft="118.333326867885,35.533333086239" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load_Products_STG">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Load_Products_STG\Flat File Source"
+          TopLeft="131.666659472717,15.5999998915195" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Load_Products_STG\Data Conversion"
+          TopLeft="194.99998934567,130.866665756636" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load_Products_STG\OLE DB Destination"
+          TopLeft="448.333308837481,16.4666665521595" />
+        <EdgeLayout
+          Id="Package\Load_Products_STG.Paths[Data Conversion Output]"
+          TopLeft="297.666656012337,130.866665756636">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="236.266652825144,-72.7999992044765"
+              Start="0,0"
+              End="236.266652825144,-65.2999992044765">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-25.5634514535945" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-25.5634514535945"
+                    Point2="0,-29.5634514535945"
+                    Point3="4,-29.5634514535945" />
+                  <mssgle:LineSegment
+                    End="232.266652825144,-29.5634514535945" />
+                  <mssgle:CubicBezierSegment
+                    Point1="232.266652825144,-29.5634514535945"
+                    Point2="236.266652825144,-29.5634514535945"
+                    Point3="236.266652825144,-33.5634514535945" />
+                  <mssgle:LineSegment
+                    End="236.266652825144,-65.2999992044765" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Products_STG.Paths[Flat File Source Output]"
+          TopLeft="207.266659472717,57.1999998915195">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41.0666632062863,73.6666658651165"
+              Start="0,0"
+              End="41.0666632062863,66.1666658651165">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.7512685594854" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.7512685594854"
+                    Point2="0,43.7512685594854"
+                    Point3="4,43.7512685594854" />
+                  <mssgle:LineSegment
+                    End="37.0666632062863,43.7512685594854" />
+                  <mssgle:CubicBezierSegment
+                    Point1="37.0666632062863,43.7512685594854"
+                    Point2="41.0666632062863,43.7512685594854"
+                    Point3="41.0666632062863,47.7512685594854" />
+                  <mssgle:LineSegment
+                    End="41.0666632062863,66.1666658651165" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_Products_STG\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

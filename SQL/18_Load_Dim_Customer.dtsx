@@ -1,0 +1,47 @@
+USE Fashion_DW;
+GO
+
+/* Xóa dữ liệu cũ nếu chạy lại */
+TRUNCATE TABLE dbo.Dim_Customer;
+GO
+
+/* Nạp dữ liệu từ STG sang DIM */
+INSERT INTO dbo.Dim_Customer
+(
+    Customer_ID,
+    Customer_Name,
+    Email,
+    Telephone,
+    City,
+    Country,
+    Gender,
+    Date_Of_Birth,
+    Job_Title,
+    Age,
+    Age_Group
+)
+SELECT
+    Customer_ID,
+    Name,
+    Email,
+    Telephone,
+    City,
+    Country,
+    TRY_CONVERT(NVARCHAR(20), Gender),
+    TRY_CONVERT(DATE, Date_Of_Birth),
+    Job_Title,
+    TRY_CONVERT(INT, Age),
+    Age_Group
+FROM Fashion_Staging.stg.customers;
+GO
+
+/* Kiểm tra số dòng */
+SELECT COUNT(*) AS SoDong
+FROM dbo.Dim_Customer;
+GO
+
+/* Xem thử dữ liệu */
+SELECT TOP 10 *
+FROM dbo.Dim_Customer
+ORDER BY Customer_Key;
+GO
