@@ -1,0 +1,14 @@
+﻿-- Q6: Doanh thu thuần và số lượng bán theo Chương trình khuyến mãi
+WITH MEMBER [Measures].[Sales Quantity] AS
+(
+    [Measures].[Quantity],
+    [Dim Payment].[Transaction Type].&[Sale]
+)
+SELECT
+{
+    [Measures].[Net Amount USD],
+    [Measures].[Sales Quantity]
+} ON COLUMNS,
+NON EMPTY
+[Dim Promotion].[Promotion Name].[Promotion Name].Members ON ROWS
+FROM [Fashion Sales];

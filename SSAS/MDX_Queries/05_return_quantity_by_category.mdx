@@ -1,0 +1,13 @@
+﻿-- Q5: Tổng số lượng sản phẩm trả lại theo Danh mục (Category)
+WITH MEMBER [Measures].[Return Quantity] AS
+(
+    [Measures].[Quantity],
+    [Dim Payment].[Transaction Type].&[Return]
+)
+SELECT
+{
+    [Measures].[Return Quantity]
+} ON COLUMNS,
+NON EMPTY
+[Dim Product].[Product Hierarchy].[Category].Members ON ROWS
+FROM [Fashion Sales];

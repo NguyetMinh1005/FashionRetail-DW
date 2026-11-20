@@ -1,0 +1,20 @@
+﻿-- Q4: Top 10 sản phẩm có doanh thu thuần cao nhất kèm số lượng bán
+WITH MEMBER [Measures].[Sales Quantity] AS
+(
+    [Measures].[Quantity],
+    [Dim Payment].[Transaction Type].&[Sale]
+)
+SELECT
+{
+    [Measures].[Net Amount USD],
+    [Measures].[Sales Quantity]
+} ON COLUMNS,
+TOPCOUNT(
+    NONEMPTY(
+        [Dim Product].[Product Hierarchy].[Product ID].Members,
+        [Measures].[Net Amount USD]
+    ),
+    10,
+    [Measures].[Net Amount USD]
+) ON ROWS
+FROM [Fashion Sales];

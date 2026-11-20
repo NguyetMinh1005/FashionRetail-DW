@@ -1,0 +1,17 @@
+﻿-- Q3: Top 10 tổ hợp Cửa hàng - Nhân viên có doanh thu thuần cao nhất
+SELECT
+{
+    [Measures].[Net Amount USD]
+} ON COLUMNS,
+TOPCOUNT(
+    NONEMPTY(
+        CROSSJOIN(
+            [Dim Store].[Store Geography].[Store Name].Members,
+            [Dim Employee].[Employee Name].[Employee Name].Members
+        ),
+        [Measures].[Net Amount USD]
+    ),
+    10,
+    [Measures].[Net Amount USD]
+) ON ROWS
+FROM [Fashion Sales];

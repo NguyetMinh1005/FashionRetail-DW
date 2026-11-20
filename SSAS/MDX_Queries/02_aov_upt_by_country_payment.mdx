@@ -1,0 +1,12 @@
+﻿-- Q2: Phân tích AOV và UPT theo Quốc gia và Phương thức thanh toán
+SELECT
+{
+    [Measures].[AOV],
+    [Measures].[UPT]
+} ON COLUMNS,
+NON EMPTY
+CROSSJOIN(
+    [Dim Store].[Store Geography].[Country].Members,
+    [Dim Payment].[Payment Method].[Payment Method].Members
+) ON ROWS
+FROM [Fashion Sales];

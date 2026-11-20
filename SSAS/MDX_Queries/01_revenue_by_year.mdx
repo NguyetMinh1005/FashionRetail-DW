@@ -1,0 +1,5 @@
+﻿-- Q1: Doanh thu thuần (Net Amount USD) theo năm
+SELECT
+    {[Measures].[Net Amount USD]} ON COLUMNS,
+    [Dim Date].[Calendar].[Year Number].Members ON ROWS
+FROM [Fashion Sales];

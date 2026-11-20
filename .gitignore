@@ -1,23 +1,38 @@
-﻿# Visual Studio
+﻿# Visual Studio / SSIS / SSAS
 .vs/
 bin/
 obj/
 *.user
 *.suo
+*.ispac
 
 # SQL Server
 *.mdf
 *.ldf
 *.bak
 
-# Dataset gốc
-data/raw/*
-*.csv
+# Power BI (chỉ giữ .pbit / .pbip, chặn file .pbix nặng)
+*.pbix
 
-# Temporary files
+# Dataset & CSV (chặn toàn bộ data và csv, chỉ mở lại data/reference)
+data/*
+!data/reference/
+!data/README.md
+*.csv
+!data/reference/*.csv
+
+# Python & Jupyter Notebook
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Temporary & Archive files
 *.tmp
 *.log
 ~$*
+*.zip
+*.rar
 
 # Secrets
 .env
